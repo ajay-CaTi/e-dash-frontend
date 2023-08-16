@@ -70,16 +70,28 @@ const Nav = () => {
                   </Link>
                 </li>
               ) : (
-                <li className="nav-item">
-                  <Link
-                    className="nav-link active"
-                    aria-current="page"
-                    to="/signup"
-                  >
-                    {" "}
-                    SignUp
-                  </Link>
-                </li>
+                <ul className="navbar-nav">
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link active"
+                      aria-current="page"
+                      to="/signup"
+                    >
+                      {" "}
+                      SignUp
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link active"
+                      aria-current="page"
+                      to="/login"
+                    >
+                      {" "}
+                      Login
+                    </Link>
+                  </li>
+                </ul>
               )}
             </ul>
           </div>

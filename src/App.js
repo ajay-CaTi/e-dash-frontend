@@ -26,7 +26,7 @@ function App() {
             <Route path="/profile" element={<h1>Profile Component</h1>} />
           </Route>
           <Route path="/signup" element={<SignUp />} />
-          {/* <Route path="/login" element={<Login />} /> */}
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
       </Router>

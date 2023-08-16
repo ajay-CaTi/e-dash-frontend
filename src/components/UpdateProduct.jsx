@@ -13,16 +13,25 @@ const UpdateProduct = () => {
     getProductDetails();
   }, []);
 
+  // fetch data in empty fields
   const getProductDetails = async () => {
     console.log(params);
     let result = await fetch(`http://localhost:4500/product/${params.id}`);
     result = await result.json();
     console.log(result);
+    setName(result.name);
+    setPrice(result.price);
+    setCategory(result.category);
+    setCompnay(result.company);
   };
 
   const updateProd = async () => {
     console.log(name, price, category, company);
-    let result = await fetch(`http://localhost:4500/product/${params.id}`);
+    let result = await fetch(`http://localhost:4500/product/${params.id}`, {
+      method: "put",
+      body: JSON.stringify({ name, price, category, company }),
+      headers: { "Content-Type": "application/json" },
+    });
 
     result = await result.json();
     console.log(result);

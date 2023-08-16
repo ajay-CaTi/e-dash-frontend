@@ -26,6 +26,20 @@ const ProductList = () => {
     console.log(result);
   };
 
+  const searchHandle = async (e) => {
+    let key = e.target.value.toLowerCase();
+    if (key) {
+      let result = await fetch(`http://localhost:4500/search/${key}`);
+      result = await result.json();
+      console.log(result);
+      if (result) {
+        setProducts(result);
+      }
+    } else {
+      getProducts();
+    }
+  };
+
   return (
     <div>
       <h2>Product List</h2>
@@ -33,14 +47,12 @@ const ProductList = () => {
         <div className="mt-3 mb-3">
           <form className="d-flex" role="search">
             <input
+              onChange={searchHandle}
               className="form-control me-2"
               type="search"
-              placeholder="Search"
+              placeholder="Search products here..."
               aria-label="Search"
             />
-            <button className="btn btn-outline-primary" type="submit">
-              Search
-            </button>
           </form>
         </div>
         <table className="table table-bordered table-hover">
@@ -55,30 +67,36 @@ const ProductList = () => {
             </tr>
           </thead>
           <tbody className="overfl">
-            {products.map((val, index) => (
-              <tr key={val._id}>
-                <th scope="row">{index + 1}</th>
-                <td>{val.name}</td>
-                <td>{val.price}</td>
-                <td>{val.category}</td>
-                <td>{val.company}</td>
-                <td className="d-flex justify-content-center">
-                  <button
-                    onClick={() => {
-                      deleteProduct(val._id);
-                    }}
-                    className="btn btn-danger"
-                  >
-                    Delete
-                  </button>
-                  <button className="btn btn-warning ms-1">
-                    <Link className="tdn" to={`/update/${val._id}`}>
-                      Edit
-                    </Link>
-                  </button>
-                </td>
+            {products.length > 0 ? (
+              products.map((val, index) => (
+                <tr key={val._id}>
+                  <th scope="row">{index + 1}</th>
+                  <td>{val.name}</td>
+                  <td>{val.price}</td>
+                  <td>{val.category}</td>
+                  <td>{val.company}</td>
+                  <td className="d-flex justify-content-center">
+                    <button
+                      onClick={() => {
+                        deleteProduct(val._id);
+                      }}
+                      className="btn btn-danger"
+                    >
+                      Delete
+                    </button>
+                    <button className="btn btn-warning ms-1">
+                      <Link className="tdn" to={`/update/${val._id}`}>
+                        Edit
+                      </Link>
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td key={"index"}>No Result Found...</td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

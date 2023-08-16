@@ -1,7 +1,17 @@
+.tdn {
+  text-decoration: none;
+  color: white;
+}
+
+.mll {
+  max-height: 100%;
+  margin-bottom: 80px;
+}
+
 .footer {
   margin: 0px;
   padding: 0px;
-  position: absolute;
+  position: fixed;
   bottom: 0%;
   text-align: center;
   width: 100%;

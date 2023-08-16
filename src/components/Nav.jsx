@@ -27,37 +27,41 @@ const Nav = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">
-                  Products
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/add">
-                  Add Product
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/update"
-                >
-                  Update Product
-                </Link>
-              </li>
+            {auth ? (
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link className="nav-link active" aria-current="page" to="/">
+                    Products
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    to="/add"
+                  >
+                    Add Product
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    to="/update"
+                  >
+                    Update Product
+                  </Link>
+                </li>
 
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to="/profile"
-                >
-                  Profile
-                </Link>
-              </li>
-              {auth ? (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    to="/profile"
+                  >
+                    Profile
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <Link
                     onClick={logout}
@@ -66,34 +70,34 @@ const Nav = () => {
                     to="/signup"
                   >
                     {" "}
-                    Logout
+                    Logout ({JSON.parse(auth).name})
                   </Link>
                 </li>
-              ) : (
-                <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <Link
-                      className="nav-link active"
-                      aria-current="page"
-                      to="/signup"
-                    >
-                      {" "}
-                      SignUp
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      className="nav-link active"
-                      aria-current="page"
-                      to="/login"
-                    >
-                      {" "}
-                      Login
-                    </Link>
-                  </li>
-                </ul>
-              )}
-            </ul>
+              </ul>
+            ) : (
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    to="/signup"
+                  >
+                    {" "}
+                    SignUp
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    to="/login"
+                  >
+                    {" "}
+                    Login
+                  </Link>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </nav>
